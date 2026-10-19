@@ -1,17 +1,19 @@
-# taskati
+<div align="center">
+Taskati
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+###  Welcome Screens
+<table align="center">
+  <tr>
+    <td align="center">
+      <b>Splash Screen</b><br><br>
+      <img src="assets/readme/splash.png" width="500" alt="Splash Screen" />
+    </td>
+    <td align="center">
+      <b>Upload Screen</b><br><br>
+      <img src="assets/readme/upload.png" width="500" alt="Upload Screen" />
+    </td>
+  </tr>
+</table>
+</div>
