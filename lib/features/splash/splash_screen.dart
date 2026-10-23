@@ -3,8 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/app_images.dart';
 import 'package:taskati/core/functions/naviagtions.dart';
+import 'package:taskati/core/services/local/hive_helper.dart';
 import 'package:taskati/core/styles/app_colors.dart';
 import 'package:taskati/core/styles/text_styles.dart';
+import 'package:taskati/features/home/screen/home_screen.dart';
 
 import '../upload/upload_screen.dart';
 
@@ -18,8 +20,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    bool userHasData = HiveHelper.getData(HiveHelper.kImage) != null;
     Future.delayed(Duration(seconds: 3), () {
-      pushReplacement(context, UploadScreen());
+      if (mounted) {
+        if (userHasData) {
+          pushReplacement(context, HomeScreen());
+        } else {
+          pushReplacement(context, UploadScreen());
+        }
+      }
     });
     super.initState();
   }

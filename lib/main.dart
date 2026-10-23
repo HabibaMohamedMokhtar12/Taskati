@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive_ce/hive.dart';
+import 'package:hive_ce_flutter/adapters.dart';
+import 'package:taskati/core/services/local/hive_helper.dart';
 
 import 'core/styles/themes.dart';
 import 'features/splash/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await HiveHelper.init();
+
   runApp(const MyApp());
 }
 
