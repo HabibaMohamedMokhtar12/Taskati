@@ -40,4 +40,8 @@ class TextStyles {
     fontSize: 12,
     fontWeight: FontWeight.normal,
   );
+  static const TextStyle caption3 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+  );
 }

@@ -11,12 +11,14 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.color,
     this.controller,
+    this.maxLines = 1,
   });
 
   final String? title;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Color? color;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,15 @@ class CustomTextField extends StatelessWidget {
         if (title != null) ...[
           Text(
             title ?? '',
-            style: TextStyles.caption2.copyWith(color: AppColors.greyColor),
+            style: TextStyles.caption2.copyWith(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
           const Gap(8),
         ],
         Container(
           decoration: BoxDecoration(
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
@@ -42,10 +47,12 @@ class CustomTextField extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            validator: validator,
             controller: controller,
+            maxLines: maxLines,
             decoration: InputDecoration(
               filled: true,
-              fillColor: color ?? AppColors.whiteColor,
+              fillColor: color ?? Theme.of(context).colorScheme.inversePrimary,
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 14,
@@ -58,15 +65,7 @@ class CustomTextField extends StatelessWidget {
 
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: AppColors.primaryColor),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: AppColors.redColor),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.redColor),
+                borderSide: BorderSide(color: Theme.of(context).primaryColor),
               ),
             ),
           ),

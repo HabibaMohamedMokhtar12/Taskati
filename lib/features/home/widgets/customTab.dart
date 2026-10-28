@@ -14,14 +14,18 @@ class Customtab extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primaryColor : AppColors.secondaryColor,
+        color: isSelected
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).colorScheme.tertiary,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Center(
         child: Text(
           label,
           style: TextStyles.body.copyWith(
-            color: isSelected ? AppColors.whiteColor : AppColors.blackColor,
+            color: isSelected
+                ? Theme.of(context).colorScheme.inversePrimary
+                : Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ),

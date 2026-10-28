@@ -8,6 +8,7 @@ import 'package:taskati/core/styles/app_colors.dart';
 import 'package:taskati/core/styles/text_styles.dart';
 import 'package:taskati/features/home/screen/home_screen.dart';
 
+import '../../core/functions/extentions.dart';
 import '../upload/upload_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,13 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     bool userHasData = HiveHelper.getData(HiveHelper.kImage) != null;
     Future.delayed(Duration(seconds: 3), () {
-      if (mounted) {
-        if (userHasData) {
-          pushReplacement(context, HomeScreen());
-        } else {
-          pushReplacement(context, UploadScreen());
-        }
-      }
+      pushReplacement(context, UploadScreen());
     });
     super.initState();
   }
@@ -38,7 +33,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(AppImages.background, fit: BoxFit.cover),
+          Image.asset(
+            context.isDark ? AppImages.darkbackground : AppImages.background,
+            fit: BoxFit.cover,
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Text(
                   "It’s time to get organized",
                   style: TextStyles.caption1.copyWith(
-                    color: AppColors.greyColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ],

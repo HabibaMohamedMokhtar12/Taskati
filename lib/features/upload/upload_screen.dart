@@ -15,6 +15,7 @@ import 'package:taskati/core/widgets/custom_text_field.dart';
 import 'package:taskati/core/widgets/main_button2.dart';
 import 'package:taskati/features/home/screen/home_screen.dart';
 
+import '../../core/functions/extentions.dart';
 import '../../core/widgets/main_button.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -38,7 +39,10 @@ class _UploadScreenState extends State<UploadScreen> {
       ),
       body: Stack(
         children: [
-          Image.asset(AppImages.background, fit: BoxFit.cover),
+          Image.asset(
+            context.isDark ? AppImages.darkbackground : AppImages.background,
+            fit: BoxFit.cover,
+          ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 160, bottom: 40),
             child: Column(
@@ -52,7 +56,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           child: Text(
                             "Profile Image",
                             style: TextStyles.body.copyWith(
-                              color: AppColors.greyColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ),
@@ -89,7 +93,9 @@ class _UploadScreenState extends State<UploadScreen> {
                                   child: Container(
                                     padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                      color: AppColors.whiteColor,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .inversePrimary,
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(

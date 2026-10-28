@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:taskati/core/services/local/hive_helper.dart';
@@ -42,20 +43,30 @@ class _HomeheaderState extends State<Homeheader> {
             ),
           ),
         Gap(16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Hello!", style: TextStyles.caption1),
-            Gap(4),
-            Text(
-              name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyles.subtitle.copyWith(
-                color: AppColors.primaryColor,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Hello!", style: TextStyles.caption1),
+              Gap(4),
+              Text(
+                name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyles.subtitle.copyWith(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        Gap(10),
+        IconButton(
+          onPressed: () {
+            bool isDark = HiveHelper.getData(HiveHelper.kIsDark) ?? false;
+            HiveHelper.cacheData(HiveHelper.kIsDark, !isDark);
+          },
+          icon: Icon(Icons.dark_mode),
         ),
       ],
     );

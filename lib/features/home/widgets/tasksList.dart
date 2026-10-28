@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:taskati/core/models/task_status_enum.dart';
 import 'package:taskati/features/home/widgets/customTab.dart';
 import 'package:taskati/features/home/widgets/taskCart.dart';
 
-import '../../../core/styles/app_colors.dart';
-import '../../../core/styles/text_styles.dart';
-
 class Taskslist extends StatefulWidget {
-  const Taskslist({super.key});
+  const Taskslist({super.key, required this.selectedDate});
+
+  final DateTime selectedDate;
 
   @override
   State<Taskslist> createState() => _TaskslistState();
@@ -20,7 +19,6 @@ class _TaskslistState extends State<Taskslist> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-
     _tabController.addListener(() {
       setState(() {});
     });
@@ -44,7 +42,6 @@ class _TaskslistState extends State<Taskslist> with TickerProviderStateMixin {
             indicatorPadding: EdgeInsets.zero,
             indicatorSize: TabBarIndicatorSize.tab,
             labelPadding: const EdgeInsets.symmetric(horizontal: 4),
-
             tabs: [
               Tab(
                 child: Customtab(
@@ -71,19 +68,16 @@ class _TaskslistState extends State<Taskslist> with TickerProviderStateMixin {
               controller: _tabController,
               children: [
                 TaskListBuilder(
-                  title: "Market Research",
-                  subTitle:
-                      "Grocery shopping app design Grocery shopping app design",
+                  selectedDate: widget.selectedDate,
+                  taskStatus: TaskStatusEnum.all,
                 ),
                 TaskListBuilder(
-                  title: "Market Research",
-                  subTitle:
-                      "Grocery shopping app design Grocery shopping app design",
+                  selectedDate: widget.selectedDate,
+                  taskStatus: TaskStatusEnum.inProgress,
                 ),
                 TaskListBuilder(
-                  title: "Market Research",
-                  subTitle:
-                      "Grocery shopping app design Grocery shopping app design",
+                  selectedDate: widget.selectedDate,
+                  taskStatus: TaskStatusEnum.completed,
                 ),
               ],
             ),

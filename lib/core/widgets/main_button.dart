@@ -13,14 +13,16 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         minimumSize: const Size(double.infinity, 50),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyles.title2.copyWith(color: AppColors.whiteColor),
+        style: TextStyles.title2.copyWith(
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
       ),
     );
   }

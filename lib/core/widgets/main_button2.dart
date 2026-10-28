@@ -13,17 +13,20 @@ class MainButton2 extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
-        side: BorderSide(color: AppColors.secondaryColor, width: 1.5),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.tertiary,
+          width: 1.5,
+        ),
 
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
 
-        backgroundColor: AppColors.secondaryColor,
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
       ),
       child: Text(
         text,
-        style: TextStyles.body.copyWith(color: AppColors.primaryColor),
+        style: TextStyles.body.copyWith(color: Theme.of(context).primaryColor),
       ),
     );
   }

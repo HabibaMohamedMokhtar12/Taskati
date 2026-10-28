@@ -5,16 +5,27 @@ import 'package:hive_ce_flutter/adapters.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+import '../../hive/hive_registrar.g.dart';
+import '../../models/taskModel.dart';
+
 class HiveHelper {
   static late Box _userBox;
-  static String userBox = 'userBox';
+  static late Box<TaskModel> _taskBox;
+  static String kuserBox = 'userBox';
+  static String ktaskBox = 'taskBox';
+
   static const String kName = 'name';
   static const String kImage = 'image';
+  static const String kIsDark = 'isDark';
 
   static Future<void> init() async {
     await Hive.initFlutter();
-    _userBox = await Hive.openBox(userBox);
+    Hive.registerAdapters();
+    _userBox = await Hive.openBox(kuserBox);
+    _taskBox = await Hive.openBox<TaskModel>(ktaskBox);
   }
+
+  static Box get userBox => _userBox;
 
   static Future<void> cacheData(String key, dynamic value) async {
     await _userBox.put(key, value);
@@ -23,6 +34,16 @@ class HiveHelper {
   static dynamic getData(String key) {
     return _userBox.get(key);
   }
+
+  static Future<void> cacheTask(String key, TaskModel value) async {
+    await _taskBox.put(key, value);
+  }
+
+  static TaskModel? getTask(String key) {
+    return _taskBox.get(key);
+  }
+
+  static Box<TaskModel> get taskBox => _taskBox;
 
   static Future<void> cacheUserData({
     required String name,
